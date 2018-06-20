@@ -1,2 +1,0 @@
-# docker-mavproxy
-Containerized MAVProxy
