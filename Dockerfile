@@ -16,10 +16,8 @@ RUN echo "Europe/Zurich" > /etc/timezone && \
         python-pygame \
         python-lxml \
         python-yaml \
-        vim \
-        wget \
     && \
-    apt-get clean all && \
-    pip install --upgrade pip && \
-    pip install --upgrade setuptools && \
+    apt-get clean all
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools && \
     pip install --upgrade MAVProxy
