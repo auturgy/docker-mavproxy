@@ -21,3 +21,12 @@ RUN echo "Europe/Zurich" > /etc/timezone && \
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools && \
     pip install --upgrade MAVProxy
+
+COPY ./files/* /
+
+RUN for SCRIPT in $(ls /*.sh) ; do \
+        chmod +x ${SCRIPT} && \
+        DEST=$(echo $SCRIPT | sed 's#.sh##g') && \
+        mv -v ${SCRIPT} /usr/bin/${DEST} \
+    ; done && \
+    mkdir -p /var/log/mavproxy/

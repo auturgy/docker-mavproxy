@@ -5,14 +5,14 @@
 For ```/dev/ttyUSB0```:
 
 ```bash
-docker run --rm --device=/dev/ttyUSB0 --net=host -it asciich/mavproxy /bin/bash -c "mavproxy.py --master=/dev/ttyUSB0,57600 --out=udp:127.0.0.1:14550 --out=udp:127.0.0.1:14551"
+docker run --rm --device=/dev/ttyUSB0 -v $(pwd):/var/log/mavproxy/ --net=host -it asciich/mavproxy /bin/bash -c "run_mavproxy --master=/dev/ttyUSB0,57600"
 ```
 
 
 For ```/dev/ttyAMA0```:
 
 ```bash
-docker run --rm --device=/dev/ttyAMA0 --net=host -it asciich/mavproxy /bin/bash -c "mavproxy.py --master=/dev/ttyAMA0,57600 --out=udp:127.0.0.1:14550 --out=udp:127.0.0.1:14551"
+docker run --rm --device=/dev/ttyAMA0 -v $(pwd)://var/log/mavproxy/ --net=host -it asciich/mavproxy /bin/bash -c "run_mavproxy --master=/dev/ttyAMA0,57600"
 ```
 
 
