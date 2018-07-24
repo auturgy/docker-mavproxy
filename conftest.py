@@ -4,7 +4,7 @@ import docker
 import pytest
 
 
-class DockerContainerError(Exception):
+class DockerContainerError(AssertionError):
     pass
 
 
@@ -130,6 +130,15 @@ class DockerContainer():
     def run(self):
         self._container = self._client.containers.run(self._image, self.default_command, detach=True)
 
+    def run_expect(self, command, expected):
+        if not isinstance(expected, list):
+            expected = [expected]
+        expected = [int(e) for e in expected]
+        ret =  self._container.exec_run(command)
+        exit_code = ret.exit_code
+        if ret.exit_code not in expected:
+            raise DockerContainerExecError('Command "{}" exit code {}, expected exit code(s): {}'.format(command, exit_code, expected))
+        return True
 
 @pytest.fixture(scope='module')
 def docker_container(container_image):
