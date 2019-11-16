@@ -15,6 +15,13 @@ For ```/dev/ttyAMA0```:
 docker run --rm --device=/dev/ttyAMA0 -v $(pwd)://var/log/mavproxy/ --net=host -it asciich/mavproxy /bin/bash -c "run_mavproxy --master=/dev/ttyAMA0,57600"
 ```
 
+For ```/dev/ttyACM0```:
+
+```bash
+docker run --rm --device=/dev/ttyACM0 -v $(pwd)://var/log/mavproxy/ --net=host -it asciich/mavproxy /bin/bash -c "run_mavproxy --master=/dev/ttyACM0,57600"
+```
+
+
 
 ## More information
 
